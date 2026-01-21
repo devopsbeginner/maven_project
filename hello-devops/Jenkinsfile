@@ -4,19 +4,23 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/devopsbeginner/maven_project.git'
+                checkout scm
             }
         }
 
         stage('Build with Maven') {
             steps {
-                sh 'cd /hello-devops/app && mvn clean package'
+                dir('app') {
+                    sh 'mvn clean package'
+                }
             }
         }
 
-        stage('Deploy with Ansible') {
+        stage('Deploy using Ansible') {
             steps {
-                sh 'cd ansible && ansible-playbook -i inventory deploy.yml'
+                dir('ansible') {
+                    sh 'ansible-playbook -i inventory deploy.yml'
+                }
             }
         }
     }

@@ -1,14 +1,21 @@
-- name: Deploy Java App
-  hosts: web
-  become: yes
+- name: Deploy Java app locally
+  hosts: localhost
+  connection: local
+  gather_facts: no
 
   tasks:
-    - name: Copy JAR file
-      copy:
-        src: ../app/target/hello-devops-1.0.jar
-        dest: /opt/hello-devops.jar
+    - name: Create app directory
+      file:
+        path: /tmp/hello-devops
+        state: directory
         mode: '0755'
 
-    - name: Run application
-      shell: java -jar /opt/hello-devops.jar
+    - name: Copy JAR from Jenkins workspace
+      copy:
+        src: ../app/target/hello-devops-1.0.jar
+        dest: /tmp/hello-devops/hello-devops.jar
+        mode: '0755'
+
+    - name: Run Java application
+      shell: java -jar /tmp/hello-devops/hello-devops.jar
 
