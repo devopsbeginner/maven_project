@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git ''
+                git 'https://github.com/devopsbeginner/maven_project.git'
             }
         }
 
         stage('Build with Maven') {
             steps {
-                sh 'cd app && mvn clean package'
+                sh 'cd /hello-devops/app && mvn clean package'
             }
         }
 
