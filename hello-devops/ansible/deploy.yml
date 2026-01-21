@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 - name: Deploy Java app locally
+=======
+- name: Deploy Java application locally
+>>>>>>> 8e71fe255e49bae3101ed2c6f72f7a8a9c72e609
   hosts: localhost
   connection: local
   gather_facts: no
 
   tasks:
+<<<<<<< HEAD
     - name: Create app directory
+=======
+    - name: Ensure application directory exists
+>>>>>>> 8e71fe255e49bae3101ed2c6f72f7a8a9c72e609
       file:
         path: /tmp/hello-devops
         state: directory
@@ -15,7 +23,12 @@
         src: ../app/target/hello-devops-1.0.jar
         dest: /tmp/hello-devops/hello-devops.jar
         mode: '0755'
+<<<<<<< HEAD
 
     - name: Run Java application
       shell: java -jar /tmp/hello-devops/hello-devops.jar
+=======
+>>>>>>> 8e71fe255e49bae3101ed2c6f72f7a8a9c72e609
 
+    - name: Run Java application
+      shell: java -jar /tmp/hello-devops/hello-devops.jar
