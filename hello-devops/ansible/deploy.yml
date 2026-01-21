@@ -1,0 +1,14 @@
+- name: Deploy Java App
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Copy JAR file
+      copy:
+        src: ../app/target/hello-devops-1.0.jar
+        dest: /opt/hello-devops.jar
+        mode: '0755'
+
+    - name: Run application
+      shell: java -jar /opt/hello-devops.jar
+
